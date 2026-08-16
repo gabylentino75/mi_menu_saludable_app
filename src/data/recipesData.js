@@ -1,8 +1,6 @@
 // Catálogo de Recetas de Mi Menú Saludable
 // Generado a partir de catalogo_recetas.xlsx
 
-import { normalize } from '../utils/text.js';
-
 export const EXTENDED_RECIPES = [
   // ==========================================
   // DESAYUNOS Y MERIENDAS
@@ -313,7 +311,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Muy fácil",
     frutas: [],
     verduras: ["tomate cherry"],
-    etiquetas: ["Rápida", "Poco tiempo", "Vegetariana", "Vegano", "Salado", "Vegetal", "Proteico"],
+    etiquetas: ["Rápida", "Poco tiempo", "Vegetariana", "Vegano", "Salado", "Proteico"],
     preparacion_anticipada: true,
     para_llevar: true,
     congelable: false,
@@ -546,7 +544,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Fácil",
     frutas: [],
     verduras: ["espinaca"],
-    etiquetas: ["Rápida", "Poco tiempo", "Vegetariana", "Sin Gluten", "Salado", "Proteico", "Sin gluten"],
+    etiquetas: ["Rápida", "Poco tiempo", "Vegetariana", "Sin Gluten", "Salado", "Proteico"],
     preparacion_anticipada: false,
     para_llevar: false,
     congelable: false,
@@ -611,7 +609,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Muy fácil",
     frutas: ["frutillas", "arándanos", "banana"],
     verduras: [],
-    etiquetas: ["Con frutas", "Rápida", "Poco tiempo", "Vegetariana", "Sin Gluten", "Dulce", "Sin gluten", "Vegano"],
+    etiquetas: ["Con frutas", "Rápida", "Poco tiempo", "Vegetariana", "Sin Gluten", "Dulce"],
     preparacion_anticipada: true,
     para_llevar: true,
     congelable: false,
@@ -950,7 +948,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Muy fácil",
     frutas: [],
     verduras: ["tomate"],
-    etiquetas: ["Rápida", "Poco tiempo", "Salado", "Clásico", "Rápido"],
+    etiquetas: ["Rápida", "Poco tiempo", "Salado", "Clásico"],
     preparacion_anticipada: false,
     para_llevar: true,
     congelable: false,
@@ -1375,7 +1373,7 @@ export const EXTENDED_RECIPES = [
         nombre: "mozzarella",
         cantidad: 100,
         unidad: "g",
-        categoria: "Almacén"
+        categoria: "Lácteos y Bebidas"
       }
     ],
     pasos: ["Preparar y cortar los ingredientes vegetales y proteínas.", "Cocinar a la plancha, horno o cacerola según el plato hasta lograr el punto justo.", "Servir acompañado de guarnición fresca o al vapor."],
@@ -1686,7 +1684,7 @@ export const EXTENDED_RECIPES = [
         nombre: "mozzarella",
         cantidad: 150,
         unidad: "g",
-        categoria: "Almacén"
+        categoria: "Lácteos y Bebidas"
       }
     ],
     pasos: ["Preparar y cortar los ingredientes vegetales y proteínas.", "Cocinar a la plancha, horno o cacerola según el plato hasta lograr el punto justo.", "Servir acompañado de guarnición fresca o al vapor."],
@@ -1712,7 +1710,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Fácil",
     frutas: [],
     verduras: ["variadas"],
-    etiquetas: ["Vegetariana", "Vegano", "Sin Gluten", "Familiar", "Nutritivo", "Fácil"],
+    etiquetas: ["Sin Gluten", "Familiar", "Nutritivo", "Fácil"],
     preparacion_anticipada: true,
     para_llevar: true,
     congelable: true,
@@ -1723,7 +1721,7 @@ export const EXTENDED_RECIPES = [
         nombre: "pata muslo",
         cantidad: 4,
         unidad: "unid",
-        categoria: "Almacén"
+        categoria: "Carnes y Pescados"
       },
       {
         id: "i132",
@@ -1874,7 +1872,7 @@ export const EXTENDED_RECIPES = [
         nombre: "mozzarella",
         cantidad: 150,
         unidad: "g",
-        categoria: "Almacén"
+        categoria: "Lácteos y Bebidas"
       }
     ],
     pasos: ["Preparar y cortar los ingredientes vegetales y proteínas.", "Cocinar a la plancha, horno o cacerola según el plato hasta lograr el punto justo.", "Servir acompañado de guarnición fresca o al vapor."],
@@ -2211,7 +2209,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Fácil",
     frutas: [],
     verduras: ["variadas"],
-    etiquetas: ["Vegetariana", "Vegano", "Sin Gluten", "Familiar", "Nutritivo", "Fácil"],
+    etiquetas: ["Sin Gluten", "Familiar", "Nutritivo", "Fácil"],
     preparacion_anticipada: true,
     para_llevar: true,
     congelable: true,
@@ -2222,7 +2220,7 @@ export const EXTENDED_RECIPES = [
         nombre: "bifes de cuadril",
         cantidad: 600,
         unidad: "g",
-        categoria: "Almacén"
+        categoria: "Carnes y Pescados"
       },
       {
         id: "i169",
@@ -3419,7 +3417,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Fácil",
     frutas: [],
     verduras: ["variadas"],
-    etiquetas: ["Vegetariana", "Vegano", "Vianda", "Escolar", "Apta para niños", "Para llevar", "Práctico"],
+    etiquetas: ["Vegetariana", "Vianda", "Escolar", "Apta para niños", "Para llevar", "Práctico"],
     preparacion_anticipada: true,
     para_llevar: true,
     congelable: true,
@@ -3451,7 +3449,7 @@ export const EXTENDED_RECIPES = [
         nombre: "mozzarella",
         cantidad: 100,
         unidad: "g",
-        categoria: "Almacén"
+        categoria: "Lácteos y Bebidas"
       }
     ],
     pasos: ["Preparar los ingredientes y realizar la mezcla o ensamblado.", "Cocinar al horno o plancha hasta lograr la firmeza adecuada para manipular.", "Dejar enfriar por completo antes de guardar en el tupper."],
@@ -3493,7 +3491,7 @@ export const EXTENDED_RECIPES = [
         nombre: "mozzarella en barras",
         cantidad: 200,
         unidad: "g",
-        categoria: "Almacén"
+        categoria: "Lácteos y Bebidas"
       },
       {
         id: "i258",
@@ -3850,10 +3848,10 @@ export const getAllRecipes = () => EXTENDED_RECIPES;
 export const filterRecipesByIngredients = (availableIngredients = []) => {
   if (!availableIngredients.length) return [];
 
-  const cleanInput = availableIngredients.map(i => normalize(i));
+  const cleanInput = availableIngredients.map(i => i.toLowerCase().trim());
 
   return EXTENDED_RECIPES.map(recipe => {
-    const recipeIngredientsNames = recipe.ingredientes.map(ing => normalize(ing.nombre));
+    const recipeIngredientsNames = recipe.ingredientes.map(ing => ing.nombre.toLowerCase());
 
     // Contar cuántos de los ingredientes ingresados están en la receta
     let matchCount = 0;
@@ -3866,7 +3864,7 @@ export const filterRecipesByIngredients = (availableIngredients = []) => {
     const totalIngs = recipe.ingredientes.length;
     const matchPercentage = Math.round((matchCount / Math.max(cleanInput.length, 1)) * 100);
     const missingIngredients = recipe.ingredientes.filter(ing =>
-      !cleanInput.some(ingInput => normalize(ing.nombre).includes(ingInput))
+      !cleanInput.some(ingInput => ing.nombre.toLowerCase().includes(ingInput))
     );
 
     return {

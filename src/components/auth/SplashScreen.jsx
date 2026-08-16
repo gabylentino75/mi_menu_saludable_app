@@ -46,7 +46,7 @@ export const SplashScreen = ({ onContinue }) => {
       {/* Logo */}
       <div className="flex flex-col items-center text-center shrink-0">
         <img
-          src="/images/logo_app.ico"
+          src={`${import.meta.env.BASE_URL}images/logo_app.ico`}
           alt="Mi Menú Saludable"
           className="h-14 w-auto object-contain mb-3"
         />

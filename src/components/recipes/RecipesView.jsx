@@ -5,9 +5,9 @@ import { RecipeCard } from './RecipeCard';
 import { useApp } from '../../context/AppContext';
 
 const CATEGORY_CARDS = [
-  { id: 'Desayuno/Merienda', label: 'Desayunos y meriendas', image: '/images/categories/desayuno.jpg', bg: 'bg-peach-300' },
-  { id: 'Almuerzo/Cena', label: 'Almuerzos y cenas', image: '/images/categories/almuerzo.jpg', bg: 'bg-coral-300' },
-  { id: 'Viandas', label: 'Viandas escolares', image: '/images/categories/viandas.jpg', bg: 'bg-pinkAccent-200', wide: true },
+  { id: 'Desayuno/Merienda', label: 'Desayunos y meriendas', image: `${import.meta.env.BASE_URL}images/categories/desayuno.jpg`, bg: 'bg-peach-300' },
+  { id: 'Almuerzo/Cena', label: 'Almuerzos y cenas', image: `${import.meta.env.BASE_URL}images/categories/almuerzo.jpg`, bg: 'bg-coral-300' },
+  { id: 'Viandas', label: 'Viandas escolares', image: `${import.meta.env.BASE_URL}images/categories/viandas.jpg`, bg: 'bg-pinkAccent-200', wide: true },
 ];
 
 export const RecipesView = ({ onSelectRecipe }) => {

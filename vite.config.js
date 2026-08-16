@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  // GitHub Pages sirve el proyecto en /mi_menu_saludable_app/, no en la raíz del dominio.
+  // Sin esto, el build busca los archivos JS/CSS en la raíz y la página queda en blanco.
+  base: '/mi_menu_saludable_app/',
   plugins: [
     react(),
     VitePWA({

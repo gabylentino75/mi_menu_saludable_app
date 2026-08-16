@@ -5,7 +5,7 @@ import { fetchRecipeImageUrl, isImageServiceConfigured } from '../../services/im
 // 1. Una foto local subida a mano en public/images/recipes/{id}.jpg (así el resultado es exacto, no una búsqueda genérica).
 // 2. Si no existe, una foto buscada por API (Pexels/Pixabay, si hay una configurada).
 // 3. Si nada de eso funciona, el emoji de la receta sobre un fondo de color.
-const LOCAL_IMAGE_BASE = '/images/recipes/';
+const LOCAL_IMAGE_BASE = `${import.meta.env.BASE_URL}images/recipes/`;
 
 export const RecipeImage = ({ recipe, className = '', emojiClassName = 'text-3xl' }) => {
   const [source, setSource] = useState('local'); // 'local' | 'remote' | 'emoji'

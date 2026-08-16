@@ -12,9 +12,9 @@ export const HomeView = ({ onSelectRecipe }) => {
   const quickIdeas = EXTENDED_RECIPES.filter(r => r.total_min <= 15).slice(0, 6);
 
   const categories = [
-    { id: 'Desayuno/Merienda', label: 'Desayunos y meriendas', image: '/images/categories/desayuno.jpg', bg: 'bg-peach-300' },
-    { id: 'Almuerzo/Cena', label: 'Almuerzos y cenas', image: '/images/categories/almuerzo.jpg', bg: 'bg-coral-300' },
-    { id: 'Viandas', label: 'Viandas escolares', image: '/images/categories/viandas.jpg', bg: 'bg-pinkAccent-200' },
+    { id: 'Desayuno/Merienda', label: 'Desayunos y meriendas', image: `${import.meta.env.BASE_URL}images/categories/desayuno.jpg`, bg: 'bg-peach-300' },
+    { id: 'Almuerzo/Cena', label: 'Almuerzos y cenas', image: `${import.meta.env.BASE_URL}images/categories/almuerzo.jpg`, bg: 'bg-coral-300' },
+    { id: 'Viandas', label: 'Viandas escolares', image: `${import.meta.env.BASE_URL}images/categories/viandas.jpg`, bg: 'bg-pinkAccent-200' },
   ];
 
   const handleCategoryClick = (cat) => {

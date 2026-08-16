@@ -26,7 +26,7 @@ export const AuthScreen = () => {
       {/* Logo */}
       <div className="flex flex-col items-center text-center pt-14 px-6 shrink-0">
         <img
-          src="/images/logo_app.ico"
+          src={`${import.meta.env.BASE_URL}images/logo_app.ico`}
           alt="Mi Menú Saludable"
           className="h-16 w-auto object-contain mb-3"
         />
@@ -85,7 +85,7 @@ export const AuthScreen = () => {
           franja de la foto -el racimo de vegetales completo- sin importar el ancho de pantalla */}
       <div className="mt-10 w-full shrink-0">
         <img
-          src="/images/portada.png"
+          src={`${import.meta.env.BASE_URL}images/portada.png`}
           alt="Vegetales y frutas frescas"
           className="w-full aspect-[1080/500] object-cover object-bottom"
         />

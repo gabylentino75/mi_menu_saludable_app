@@ -3839,6 +3839,257 @@ export const EXTENDED_RECIPES = [
     recetas_relacionadas: ["VE01", "VE04"],
     emoji: "🐟"
   },
+  // ==========================================
+  // ALMUERZOS Y CENAS
+  // ==========================================
+  {
+    id: "AC31",
+    nombre: "Ensalada de atún con garbanzos, huevo y vegetales",
+    categoria: "Almuerzo/Cena",
+    subcategoria: "Plato Principal",
+    descripcion: "Ensalada completa y rica en proteínas, ideal para el mediodía sin encender el horno.",
+    porciones: 2,
+    prep_min: 15,
+    total_min: 15,
+    dificultad: "Fácil",
+    frutas: [],
+    verduras: ["tomate", "pepino"],
+    etiquetas: ["Rápida", "Poco tiempo", "Sin Gluten", "Proteico", "Fresca"],
+    preparacion_anticipada: true,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Conservar refrigerado en recipiente hermético hasta 2 días.",
+    ingredientes: [
+      {
+        id: "i280",
+        nombre: "atún en lata al agua",
+        cantidad: 2,
+        unidad: "latas",
+        categoria: "Carnes y Pescados"
+      },
+      {
+        id: "i281",
+        nombre: "garbanzos cocidos",
+        cantidad: 1,
+        unidad: "taza",
+        categoria: "Almacén"
+      },
+      {
+        id: "i282",
+        nombre: "huevo duro",
+        cantidad: 2,
+        unidad: "unidades",
+        categoria: "Refrigerados"
+      },
+      {
+        id: "i283",
+        nombre: "tomate",
+        cantidad: 1,
+        unidad: "unidad",
+        categoria: "Verduras"
+      },
+      {
+        id: "i284",
+        nombre: "pepino",
+        cantidad: 0.5,
+        unidad: "unidad",
+        categoria: "Verduras"
+      },
+      {
+        id: "i285",
+        nombre: "cebolla morada",
+        cantidad: 0.25,
+        unidad: "unidad",
+        categoria: "Verduras"
+      },
+      {
+        id: "i286",
+        nombre: "aceite de oliva",
+        cantidad: 2,
+        unidad: "cdas",
+        categoria: "Almacén"
+      },
+      {
+        id: "i287",
+        nombre: "jugo de limón",
+        cantidad: 1,
+        unidad: "cda",
+        categoria: "Frutas"
+      }
+    ],
+    pasos: ["Escurrir el atún y desmenuzarlo con un tenedor.", "Cortar el tomate, el pepino y la cebolla morada en cubos pequeños.", "Mezclar el atún, los garbanzos, los vegetales y el huevo duro en cubos.", "Aliñar con aceite de oliva, jugo de limón, sal y pimienta antes de servir."],
+    sustituciones: [
+      {
+        original: "Garbanzos",
+        reemplazo: "porotos o lentejas",
+        nota: ""
+      },
+      {
+        original: "Huevo duro",
+        reemplazo: "más garbanzos",
+        nota: ""
+      }
+    ],
+    recetas_relacionadas: ["AC32"],
+    emoji: "🍳"
+  },
+  {
+    id: "AC32",
+    nombre: "Wrap integral de atún, palta y tomate",
+    categoria: "Almuerzo/Cena",
+    subcategoria: "Plato Principal",
+    descripcion: "Wrap fresco y práctico, listo en minutos y perfecto para el mediodía sin cocción.",
+    porciones: 2,
+    prep_min: 10,
+    total_min: 10,
+    dificultad: "Fácil",
+    frutas: [],
+    verduras: ["tomate", "lechuga"],
+    etiquetas: ["Sin cocción", "Rápida", "Poco tiempo", "Práctico"],
+    preparacion_anticipada: false,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Consumir el mismo día, preferentemente recién armado.",
+    ingredientes: [
+      {
+        id: "i288",
+        nombre: "atún en lata al agua",
+        cantidad: 2,
+        unidad: "latas",
+        categoria: "Carnes y Pescados"
+      },
+      {
+        id: "i289",
+        nombre: "tortilla integral",
+        cantidad: 2,
+        unidad: "unidades",
+        categoria: "Panadería"
+      },
+      {
+        id: "i290",
+        nombre: "palta",
+        cantidad: 1,
+        unidad: "unidad",
+        categoria: "Verduras"
+      },
+      {
+        id: "i291",
+        nombre: "tomate",
+        cantidad: 1,
+        unidad: "unidad",
+        categoria: "Verduras"
+      },
+      {
+        id: "i292",
+        nombre: "lechuga",
+        cantidad: 4,
+        unidad: "hojas",
+        categoria: "Verduras"
+      },
+      {
+        id: "i293",
+        nombre: "jugo de limón",
+        cantidad: 1,
+        unidad: "cda",
+        categoria: "Frutas"
+      },
+      {
+        id: "i294",
+        nombre: "queso crema",
+        cantidad: 2,
+        unidad: "cdas",
+        categoria: "Lácteos y Bebidas"
+      }
+    ],
+    pasos: ["Escurrir el atún y mezclarlo con el jugo de limón.", "Pisar la palta y untarla sobre la tortilla junto con el queso crema.", "Distribuir el atún, el tomate en rodajas y la lechuga sobre la tortilla.", "Enrollar bien firme y cortar por la mitad para servir."],
+    sustituciones: [
+      {
+        original: "Queso crema",
+        reemplazo: "hummus",
+        nota: ""
+      },
+      {
+        original: "Tortilla integral",
+        reemplazo: "hoja de lechuga grande",
+        nota: ""
+      }
+    ],
+    recetas_relacionadas: ["AC31"],
+    emoji: "🥑"
+  },
+  // ==========================================
+  // VIANDAS ESCOLARES
+  // ==========================================
+  {
+    id: "VE16",
+    nombre: "Sándwich de atún y queso para vianda",
+    categoria: "Viandas",
+    subcategoria: "Principales Vianda",
+    descripcion: "Sándwich clásico y nutritivo, fácil de armar la noche anterior para la vianda escolar.",
+    porciones: 2,
+    prep_min: 10,
+    total_min: 10,
+    dificultad: "Fácil",
+    frutas: [],
+    verduras: ["tomate"],
+    etiquetas: ["Rápida", "Poco tiempo", "Vianda", "Escolar", "Apta para niños", "Para llevar", "Práctico"],
+    preparacion_anticipada: true,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Envolver en papel film y enviar en lonchera térmica. Consumir el mismo día.",
+    ingredientes: [
+      {
+        id: "i295",
+        nombre: "atún en lata al agua",
+        cantidad: 1,
+        unidad: "lata",
+        categoria: "Carnes y Pescados"
+      },
+      {
+        id: "i296",
+        nombre: "pan lactal integral",
+        cantidad: 4,
+        unidad: "rebanadas",
+        categoria: "Panadería"
+      },
+      {
+        id: "i297",
+        nombre: "queso",
+        cantidad: 2,
+        unidad: "fetas",
+        categoria: "Lácteos y Bebidas"
+      },
+      {
+        id: "i298",
+        nombre: "tomate",
+        cantidad: 0.5,
+        unidad: "unidad",
+        categoria: "Verduras"
+      },
+      {
+        id: "i299",
+        nombre: "mayonesa",
+        cantidad: 1,
+        unidad: "cda",
+        categoria: "Lácteos y Bebidas"
+      }
+    ],
+    pasos: ["Escurrir el atún y mezclarlo con la mayonesa.", "Untar dos rebanadas de pan con la mezcla de atún.", "Agregar el queso y el tomate en rodajas finas.", "Cerrar el sándwich con las rebanadas restantes y cortar por la mitad."],
+    sustituciones: [
+      {
+        original: "Mayonesa",
+        reemplazo: "palta pisada",
+        nota: ""
+      },
+      {
+        original: "Queso",
+        reemplazo: "queso sin lactosa",
+        nota: ""
+      }
+    ],
+    recetas_relacionadas: ["VE01"],
+    emoji: "🐟"
+  },
 ];
 
 // Helper para obtener todas las recetas

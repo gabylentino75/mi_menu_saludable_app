@@ -68,7 +68,6 @@ export const AppProvider = ({ children }) => {
   });
 
   // Modals & Active Viewers
-  const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isPantryModalOpen, setIsPantryModalOpen] = useState(false);
   const [isLunchboxModalOpen, setIsLunchboxModalOpen] = useState(false);
   const [selectedRecipeDetail, setSelectedRecipeDetail] = useState(null);
@@ -310,8 +309,6 @@ export const AppProvider = ({ children }) => {
       weeklyPlan,
       setWeeklyMeal,
       generateShoppingFromWeeklyPlan,
-      isAiModalOpen,
-      setIsAiModalOpen,
       isPantryModalOpen,
       setIsPantryModalOpen,
       isLunchboxModalOpen,

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { Menu, Bell, Moon, Sun, Carrot, Sparkles } from 'lucide-react';
+import { Menu, Bell, Moon, Sun, Carrot } from 'lucide-react';
 
 export const Header = () => {
-  const { darkMode, toggleDarkMode, setIsAiModalOpen, setIsPantryModalOpen, setIsMenuOpen } = useApp();
+  const { darkMode, toggleDarkMode, setIsPantryModalOpen, setIsMenuOpen } = useApp();
 
   return (
     <header className="sticky top-0 z-30 bg-cream-100/95 dark:bg-mirtilo-800/95 backdrop-blur-md transition-colors">
@@ -24,14 +24,6 @@ export const Header = () => {
             aria-label="Despensa"
           >
             <Carrot className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() => setIsAiModalOpen(true)}
-            className="p-2 rounded-xl text-mirtilo-700 dark:text-cream-100 hover:bg-cream-200 dark:hover:bg-mirtilo-700 transition-colors"
-            title="¿Qué cocinamos hoy?"
-            aria-label="Asistente IA"
-          >
-            <Sparkles className="w-5 h-5" />
           </button>
           <button
             onClick={toggleDarkMode}

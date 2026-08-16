@@ -10,7 +10,6 @@ import { WeeklyPlannerView } from './components/planner/WeeklyPlannerView';
 import { RecipeDetailModal } from './components/recipes/RecipeDetailModal';
 import { IngredientMatcherModal } from './components/pantry/IngredientMatcherModal';
 import { LunchboxBuilderModal } from './components/lunchbox/LunchboxBuilderModal';
-import { AiAssistantModal } from './components/ai/AiAssistantModal';
 import { OnboardingModal } from './components/onboarding/OnboardingModal';
 import { SplashScreen } from './components/auth/SplashScreen';
 import { AuthScreen } from './components/auth/AuthScreen';
@@ -18,11 +17,9 @@ import { AuthScreen } from './components/auth/AuthScreen';
 
 function AppContent() {
   const { 
-    activeTab, 
+    activeTab,
     setActiveTab,
-    isAiModalOpen, 
-    setIsAiModalOpen,
-    isPantryModalOpen, 
+    isPantryModalOpen,
     setIsPantryModalOpen,
     isLunchboxModalOpen, 
     setIsLunchboxModalOpen,
@@ -91,12 +88,6 @@ function AppContent() {
       <LunchboxBuilderModal
         isOpen={isLunchboxModalOpen}
         onClose={() => setIsLunchboxModalOpen(false)}
-      />
-
-      <AiAssistantModal
-        isOpen={isAiModalOpen}
-        onClose={() => setIsAiModalOpen(false)}
-        onSelectRecipe={handleSelectRecipe}
       />
 
       <OnboardingModal />

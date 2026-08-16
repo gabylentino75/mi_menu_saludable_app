@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Carrot, Plus, Check, Sparkles, ChefHat } from 'lucide-react';
 import { filterRecipesByIngredients } from '../../data/recipesData';
 import { RecipeCard } from '../recipes/RecipeCard';
+import { normalize } from '../../utils/text.js';
 
 const POPULAR_PANTRY_ITEMS = [
   'huevo', 'tomate', 'queso', 'palta', 'avena', 'espinaca', 
@@ -16,7 +17,7 @@ export const IngredientMatcherModal = ({ isOpen, onClose, onSelectRecipe }) => {
   if (!isOpen) return null;
 
   const addIngredient = (ing) => {
-    const clean = ing.toLowerCase().trim();
+    const clean = normalize(ing);
     if (clean && !selectedIngredients.includes(clean)) {
       setSelectedIngredients(prev => [...prev, clean]);
     }
@@ -24,7 +25,8 @@ export const IngredientMatcherModal = ({ isOpen, onClose, onSelectRecipe }) => {
   };
 
   const removeIngredient = (ing) => {
-    setSelectedIngredients(prev => prev.filter(i => i !== ing));
+    const clean = normalize(ing);
+    setSelectedIngredients(prev => prev.filter(i => i !== clean));
   };
 
   const handleKeyDown = (e) => {
@@ -117,7 +119,7 @@ export const IngredientMatcherModal = ({ isOpen, onClose, onSelectRecipe }) => {
             </span>
             <div className="flex flex-wrap gap-1.5">
               {POPULAR_PANTRY_ITEMS.map((item) => {
-                const isSelected = selectedIngredients.includes(item);
+                const isSelected = selectedIngredients.includes(normalize(item));
                 return (
                   <button
                     key={item}

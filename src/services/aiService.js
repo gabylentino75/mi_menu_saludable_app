@@ -1,4 +1,5 @@
 import { EXTENDED_RECIPES, filterRecipesByIngredients } from '../data/recipesData';
+import { normalize } from '../utils/text.js';
 
 /**
  * Motor de IA e Inteligencia de Recomendación
@@ -56,12 +57,12 @@ export const getAiRecipeRecommendations = async ({ query, ingredients = [], maxP
 
   // 5. Búsqueda por palabras clave en la consulta si existe
   if (query && query.trim()) {
-    const qLower = query.toLowerCase().trim();
-    const searchFiltered = candidateRecipes.filter(r => 
-      r.nombre.toLowerCase().includes(qLower) ||
-      r.descripcion.toLowerCase().includes(qLower) ||
-      r.etiquetas.some(t => t.toLowerCase().includes(qLower)) ||
-      r.ingredientes.some(i => i.nombre.toLowerCase().includes(qLower))
+    const qLower = normalize(query);
+    const searchFiltered = candidateRecipes.filter(r =>
+      normalize(r.nombre).includes(qLower) ||
+      normalize(r.descripcion).includes(qLower) ||
+      r.etiquetas.some(t => normalize(t).includes(qLower)) ||
+      r.ingredientes.some(i => normalize(i.nombre).includes(qLower))
     );
 
     if (searchFiltered.length > 0) {

@@ -3,6 +3,7 @@ import { Search, X, ChevronRight, Carrot } from 'lucide-react';
 import { EXTENDED_RECIPES } from '../../data/recipesData';
 import { RecipeCard } from './RecipeCard';
 import { useApp } from '../../context/AppContext';
+import { normalize } from '../../utils/text.js';
 
 const CATEGORY_CARDS = [
   { id: 'Desayuno/Merienda', label: 'Desayunos y meriendas', image: `${import.meta.env.BASE_URL}images/categories/desayuno.jpg`, bg: 'bg-peach-300' },
@@ -36,10 +37,10 @@ export const RecipesView = ({ onSelectRecipe }) => {
     return EXTENDED_RECIPES.filter(recipe => {
       // 1. Search Query
       if (search.trim()) {
-        const q = search.toLowerCase();
-        const matchTitle = recipe.nombre.toLowerCase().includes(q);
-        const matchDesc = recipe.descripcion.toLowerCase().includes(q);
-        const matchIng = recipe.ingredientes.some(i => i.nombre.toLowerCase().includes(q));
+        const q = normalize(search);
+        const matchTitle = normalize(recipe.nombre).includes(q);
+        const matchDesc = normalize(recipe.descripcion).includes(q);
+        const matchIng = recipe.ingredientes.some(i => normalize(i.nombre).includes(q));
         if (!matchTitle && !matchDesc && !matchIng) return false;
       }
 

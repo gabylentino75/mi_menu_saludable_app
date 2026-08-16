@@ -1,6 +1,8 @@
 // Catálogo de Recetas de Mi Menú Saludable
 // Generado a partir de catalogo_recetas.xlsx
 
+import { normalize } from '../utils/text.js';
+
 export const EXTENDED_RECIPES = [
   // ==========================================
   // DESAYUNOS Y MERIENDAS
@@ -1594,7 +1596,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Fácil",
     frutas: [],
     verduras: ["variadas"],
-    etiquetas: ["Vegetariana", "Sin Gluten", "Familiar", "Nutritivo", "Fácil"],
+    etiquetas: ["Vegetariana", "Familiar", "Nutritivo", "Fácil"],
     preparacion_anticipada: true,
     para_llevar: true,
     congelable: true,
@@ -2831,7 +2833,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Fácil",
     frutas: [],
     verduras: ["variadas"],
-    etiquetas: ["Vegetariana", "Sin Gluten", "Familiar", "Nutritivo", "Fácil"],
+    etiquetas: ["Vegetariana", "Familiar", "Nutritivo", "Fácil"],
     preparacion_anticipada: true,
     para_llevar: true,
     congelable: true,
@@ -3158,7 +3160,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Fácil",
     frutas: [],
     verduras: ["variadas"],
-    etiquetas: ["Vegetariana", "Sin Gluten", "Vianda", "Escolar", "Apta para niños", "Para llevar", "Práctico"],
+    etiquetas: ["Vegetariana", "Vianda", "Escolar", "Apta para niños", "Para llevar", "Práctico"],
     preparacion_anticipada: true,
     para_llevar: true,
     congelable: true,
@@ -3169,7 +3171,7 @@ export const EXTENDED_RECIPES = [
         nombre: "tapas empanadas integrales",
         cantidad: 8,
         unidad: "unid",
-        categoria: "Almacén"
+        categoria: "Refrigerados"
       },
       {
         id: "i237",
@@ -3669,7 +3671,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Fácil",
     frutas: [],
     verduras: ["variadas"],
-    etiquetas: ["Sin Gluten", "Vianda", "Escolar", "Apta para niños", "Para llevar", "Práctico"],
+    etiquetas: ["Vianda", "Escolar", "Apta para niños", "Para llevar", "Práctico"],
     preparacion_anticipada: true,
     para_llevar: true,
     congelable: true,
@@ -3680,7 +3682,7 @@ export const EXTENDED_RECIPES = [
         nombre: "tapas empanada integrales",
         cantidad: 8,
         unidad: "unid",
-        categoria: "Almacén"
+        categoria: "Refrigerados"
       },
       {
         id: "i270",
@@ -3725,7 +3727,7 @@ export const EXTENDED_RECIPES = [
     dificultad: "Fácil",
     frutas: [],
     verduras: ["variadas"],
-    etiquetas: ["Sin Gluten", "Vianda", "Escolar", "Apta para niños", "Para llevar", "Práctico"],
+    etiquetas: ["Vianda", "Escolar", "Apta para niños", "Para llevar", "Práctico"],
     preparacion_anticipada: true,
     para_llevar: true,
     congelable: true,
@@ -3848,10 +3850,10 @@ export const getAllRecipes = () => EXTENDED_RECIPES;
 export const filterRecipesByIngredients = (availableIngredients = []) => {
   if (!availableIngredients.length) return [];
 
-  const cleanInput = availableIngredients.map(i => i.toLowerCase().trim());
+  const cleanInput = availableIngredients.map(i => normalize(i));
 
   return EXTENDED_RECIPES.map(recipe => {
-    const recipeIngredientsNames = recipe.ingredientes.map(ing => ing.nombre.toLowerCase());
+    const recipeIngredientsNames = recipe.ingredientes.map(ing => normalize(ing.nombre));
 
     // Contar cuántos de los ingredientes ingresados están en la receta
     let matchCount = 0;
@@ -3864,7 +3866,7 @@ export const filterRecipesByIngredients = (availableIngredients = []) => {
     const totalIngs = recipe.ingredientes.length;
     const matchPercentage = Math.round((matchCount / Math.max(cleanInput.length, 1)) * 100);
     const missingIngredients = recipe.ingredientes.filter(ing =>
-      !cleanInput.some(ingInput => ing.nombre.toLowerCase().includes(ingInput))
+      !cleanInput.some(ingInput => normalize(ing.nombre).includes(ingInput))
     );
 
     return {

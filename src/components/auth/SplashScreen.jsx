@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Clock, ShoppingCart, Calendar } from 'lucide-react';
-import { useApp } from '../../context/AppContext';
 
 const FEATURES = [
   {
@@ -30,17 +29,6 @@ const ICON_WRAP_CLASSES = {
 };
 
 export const SplashScreen = ({ onContinue }) => {
-  const { user, setUser } = useApp();
-  const [nombre, setNombre] = useState(user?.nombre || '');
-
-  const handleContinue = () => {
-    const trimmed = nombre.trim();
-    if (trimmed) {
-      setUser((prev) => ({ ...prev, nombre: trimmed }));
-    }
-    onContinue();
-  };
-
   return (
     <div className="h-screen flex flex-col bg-cream-100 px-6 py-10 overflow-hidden">
       {/* Logo */}
@@ -56,26 +44,8 @@ export const SplashScreen = ({ onContinue }) => {
         </p>
       </div>
 
-      {/* Nombre con el que querés que te reconozca la app */}
-      <div className="shrink-0 mt-6">
-        <label
-          htmlFor="splash-nombre"
-          className="block text-center text-xs font-bold text-mirtilo-600 mb-1.5"
-        >
-          ¿Cómo querés que te llamemos?
-        </label>
-        <input
-          id="splash-nombre"
-          type="text"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          placeholder="Tu nombre"
-          className="w-full px-5 py-3 bg-white border-2 border-coral-400 rounded-full text-sm text-mirtilo-700 placeholder-mint-500 text-center focus:outline-none focus:ring-2 focus:ring-coral-500/30"
-        />
-      </div>
-
       {/* Destacados de la app, sin foto */}
-      <div className="flex-1 min-h-0 flex flex-col justify-center gap-3 py-6">
+      <div className="flex-1 min-h-0 flex flex-col justify-center gap-3 py-6 mt-6">
         {FEATURES.map(({ icon: Icon, color, title, text }) => (
           <div
             key={title}
@@ -95,7 +65,7 @@ export const SplashScreen = ({ onContinue }) => {
       </div>
 
       <button
-        onClick={handleContinue}
+        onClick={onContinue}
         className="w-full py-3.5 rounded-2xl bg-coral-500 text-white font-bold text-sm shadow-float shrink-0"
       >
         Comenzar

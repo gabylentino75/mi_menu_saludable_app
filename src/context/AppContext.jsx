@@ -61,6 +61,12 @@ export const AppProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : DEFAULT_WEEKLY_PLAN;
   });
 
+  // Viandas armadas con el Constructor de Viandas
+  const [savedLunchboxes, setSavedLunchboxes] = useState(() => {
+    const saved = localStorage.getItem('cs_lunchboxes');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   // Modals & Active Viewers
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isPantryModalOpen, setIsPantryModalOpen] = useState(false);
@@ -99,6 +105,10 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('cs_weekly_plan', JSON.stringify(weeklyPlan));
   }, [weeklyPlan]);
+
+  useEffect(() => {
+    localStorage.setItem('cs_lunchboxes', JSON.stringify(savedLunchboxes));
+  }, [savedLunchboxes]);
 
   // Actions
   const toggleDarkMode = () => setDarkMode(prev => !prev);
@@ -197,6 +207,24 @@ export const AppProvider = ({ children }) => {
     addIngredientsToShoppingList(allIngs, `Vianda Escolar (${titleParts.join(' + ')})`);
   };
 
+  const saveLunchbox = (principal, fruit, complement) => {
+    if (!principal || !fruit || !complement) return;
+    setSavedLunchboxes(prev => [
+      {
+        id: `lunchbox-${Date.now()}`,
+        fecha: new Date().toISOString(),
+        principalId: principal.id,
+        frutaId: fruit.id,
+        complementoId: complement.id
+      },
+      ...prev
+    ]);
+  };
+
+  const removeLunchbox = (lunchboxId) => {
+    setSavedLunchboxes(prev => prev.filter(lb => lb.id !== lunchboxId));
+  };
+
   const toggleShoppingItem = (itemId) => {
     setShoppingList(prev => 
       prev.map(item => item.id === itemId ? { ...item, comprado: !item.comprado } : item)
@@ -272,6 +300,9 @@ export const AppProvider = ({ children }) => {
       shoppingList,
       addRecipeToShoppingList,
       addLunchboxToShoppingList,
+      savedLunchboxes,
+      saveLunchbox,
+      removeLunchbox,
       toggleShoppingItem,
       removeShoppingItem,
       clearCompletedShoppingItems,

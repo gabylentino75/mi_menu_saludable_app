@@ -6,7 +6,7 @@ export const OnboardingModal = () => {
   const { user, setUser, isOnboardingOpen, setIsOnboardingOpen } = useApp();
 
   const [step, setStep] = useState(1);
-  const [nombre, setNombre] = useState('');
+  const [nombre, setNombre] = useState(user?.nombre && user.nombre !== 'Familia Saludable' ? user.nombre : '');
   const [personas, setPersonas] = useState(2);
   const [tiempoDisponible, setTiempoDisponible] = useState(20);
   const [objetivo, setObjetivo] = useState('Ahorrar tiempo y comer balanceado');

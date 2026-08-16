@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { EXTENDED_RECIPES } from '../../data/recipesData';
 import { RecipeCard } from '../recipes/RecipeCard';
-import { User, Heart, Settings, ShieldCheck, Smartphone, Check, Moon, Sun, LogOut } from 'lucide-react';
+import { User, Heart, Settings, ShieldCheck, Smartphone, Check, Moon, Sun, LogOut, Package, Trash2 } from 'lucide-react';
 
 export const ProfileView = ({ onSelectRecipe }) => {
-  const { user, setUser, favorites, darkMode, toggleDarkMode, logout } = useApp();
+  const { user, setUser, favorites, darkMode, toggleDarkMode, logout, savedLunchboxes, removeLunchbox } = useApp();
 
   const [nombre, setNombre] = useState(user.nombre || '');
   const [personas, setPersonas] = useState(user.personas_cocina || 2);
@@ -38,6 +38,16 @@ export const ProfileView = ({ onSelectRecipe }) => {
   const favoriteRecipes = favorites
     .map(id => EXTENDED_RECIPES.find(r => r.id === id))
     .filter(Boolean);
+
+  // Viandas armadas con el Constructor de Viandas
+  const lunchboxesWithRecipes = (savedLunchboxes || [])
+    .map(lb => ({
+      ...lb,
+      principal: EXTENDED_RECIPES.find(r => r.id === lb.principalId),
+      fruta: EXTENDED_RECIPES.find(r => r.id === lb.frutaId),
+      complemento: EXTENDED_RECIPES.find(r => r.id === lb.complementoId)
+    }))
+    .filter(lb => lb.principal && lb.fruta && lb.complemento);
 
   return (
     <div className="space-y-6 animate-fadeIn">
@@ -179,6 +189,56 @@ export const ProfileView = ({ onSelectRecipe }) => {
         ) : (
           <div className="text-center py-8 bg-white dark:bg-mirtilo-700/40 rounded-2xl border border-dashed border-cream-300 dark:border-mirtilo-600 p-4 text-xs text-mirtilo-500 dark:text-cream-300">
             Aún no has marcado recetas favoritas. Toca el corazón en cualquier tarjeta para guardarla aquí.
+          </div>
+        )}
+      </div>
+
+      {/* Saved Lunchboxes Section */}
+      <div className="space-y-3">
+        <h3 className="font-bold text-base text-mirtilo-800 dark:text-cream-100 flex items-center gap-2">
+          <Package className="w-4 h-4 text-coral-500" />
+          Mis Viandas Armadas ({lunchboxesWithRecipes.length})
+        </h3>
+
+        {lunchboxesWithRecipes.length > 0 ? (
+          <div className="space-y-2.5">
+            {lunchboxesWithRecipes.map((lb) => (
+              <div
+                key={lb.id}
+                className="bg-white dark:bg-mirtilo-700/80 rounded-2xl p-4 border border-cream-200 dark:border-mirtilo-600 shadow-sm"
+              >
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-[10px] font-bold text-mirtilo-400 dark:text-cream-400">
+                    {new Date(lb.fecha).toLocaleDateString('es-AR', { day: '2-digit', month: 'short', year: 'numeric' })}
+                  </span>
+                  <button
+                    onClick={() => removeLunchbox(lb.id)}
+                    className="p-1.5 rounded-full hover:bg-cream-100 dark:hover:bg-mirtilo-600 text-mirtilo-400 dark:text-cream-400"
+                    aria-label="Eliminar vianda"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-center">
+                  {[lb.principal, lb.fruta, lb.complemento].map((recipe, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => onSelectRecipe && onSelectRecipe(recipe)}
+                      className="flex flex-col items-center gap-1 p-2 rounded-xl bg-cream-50 dark:bg-mirtilo-800 hover:bg-cream-100 dark:hover:bg-mirtilo-600 transition-colors"
+                    >
+                      <span className="text-xl">{recipe.emoji}</span>
+                      <span className="text-[10px] font-semibold text-mirtilo-700 dark:text-cream-200 line-clamp-2 leading-tight">
+                        {recipe.nombre}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8 bg-white dark:bg-mirtilo-700/40 rounded-2xl border border-dashed border-cream-300 dark:border-mirtilo-600 p-4 text-xs text-mirtilo-500 dark:text-cream-300">
+            Todavía no armaste ninguna vianda. Usá el "Constructor de Viandas" desde el catálogo de recetas para armar una.
           </div>
         )}
       </div>

@@ -4,7 +4,7 @@ import { EXTENDED_RECIPES } from '../../data/recipesData';
 import { useApp } from '../../context/AppContext';
 
 export const LunchboxBuilderModal = ({ isOpen, onClose }) => {
-  const { addLunchboxToShoppingList } = useApp();
+  const { addLunchboxToShoppingList, saveLunchbox } = useApp();
 
   const [step, setStep] = useState(1); // 1: Principal, 2: Fruta, 3: Complemento, 4: Resumen
   const [selectedPrincipal, setSelectedPrincipal] = useState(null);
@@ -220,7 +220,10 @@ export const LunchboxBuilderModal = ({ isOpen, onClose }) => {
               </button>
               <button
                 disabled={!selectedComplement}
-                onClick={() => setStep(4)}
+                onClick={() => {
+                  saveLunchbox(selectedPrincipal, selectedFruit, selectedComplement);
+                  setStep(4);
+                }}
                 className="px-5 py-2.5 rounded-xl bg-coral-500 text-white font-bold text-xs disabled:opacity-50 hover:bg-coral-600 transition-all flex items-center gap-1 shadow-soft"
               >
                 Ver Resumen Vianda <ChevronRight className="w-4 h-4" />

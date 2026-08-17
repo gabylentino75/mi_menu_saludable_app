@@ -37,7 +37,7 @@ export const AuthScreen = () => {
       </div>
 
       {/* Formulario */}
-      <form onSubmit={handleSubmit} className="px-8 pt-8 space-y-4 shrink-0">
+      <form onSubmit={handleSubmit} className="w-full max-w-xs mx-auto px-6 pt-8 space-y-4 shrink-0">
         <input
           type="email"
           value={email}

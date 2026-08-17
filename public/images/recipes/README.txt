@@ -59,6 +59,8 @@ AC27 - Risotto integral de hongos y cebolla de verdeo
 AC28 - Pastel de choclo y carne magra al horno
 AC29 - Revuelto gramajo saludable (huevo, arvejas y papas al horno)
 AC30 - Crepes integrales de acelga, ricota y salsa blanca liviana
+AC31 - Ensalada de atún con garbanzos, huevo y vegetales
+AC32 - Wrap integral de atún, palta y tomate
 (Nota: no hay AC26 — esa receta, "Trucha a la plancha", se eliminó del catálogo)
 
 Viandas escolares (VE):
@@ -77,3 +79,4 @@ VE12 - Bocaditos horneados de acelga, ricota y queso
 VE13 - Empanadas integrales de pollo y vegetales
 VE14 - Rolls integrales de jamón magro, queso y espinaca
 VE15 - Hamburguesitas de merluza y papa al horno
+VE16 - Sándwich de atún y queso para vianda

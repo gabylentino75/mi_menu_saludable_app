@@ -1,10 +1,9 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { EXTENDED_RECIPES } from '../../data/recipesData';
 import { Apple, Carrot, Leaf, Sparkles } from 'lucide-react';
 
 export const VarietyWidget = () => {
-  const { weeklyPlan } = useApp();
+  const { weeklyPlan, findWeeklyPlanMealById } = useApp();
 
   // Calcular cantidad acumulada de frutas, verduras y legumbres en el plan semanal
   let fruitsCount = 0;
@@ -15,11 +14,11 @@ export const VarietyWidget = () => {
     ['almuerzo', 'cena'].forEach(mealType => {
       const recipeId = day[mealType];
       if (recipeId) {
-        const recipe = EXTENDED_RECIPES.find(r => r.id === recipeId);
+        const recipe = findWeeklyPlanMealById(recipeId);
         if (recipe) {
           if (recipe.frutas && recipe.frutas.length > 0) fruitsCount += recipe.frutas.length;
           if (recipe.verduras && recipe.verduras.length > 0) veggiesCount += recipe.verduras.length;
-          const hasLegumes = recipe.ingredientes.some(i => 
+          const hasLegumes = (recipe.ingredientes || []).some(i =>
             ['lentejas', 'garbanzos', 'porotos', 'soja'].some(leg => i.nombre.toLowerCase().includes(leg))
           );
           if (hasLegumes) legumesCount += 1;

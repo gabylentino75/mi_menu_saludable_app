@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { EXTENDED_RECIPES } from '../../data/recipesData';
+import { EXTENDED_RECIPES, findLunchboxComponentById } from '../../data/recipesData';
 import { RecipeCard } from '../recipes/RecipeCard';
+import { RecipeImage } from '../recipes/RecipeImage';
 import { User, Heart, Settings, ShieldCheck, Smartphone, Check, Moon, Sun, LogOut, Package, Trash2 } from 'lucide-react';
 
 export const ProfileView = ({ onSelectRecipe }) => {
@@ -43,11 +44,12 @@ export const ProfileView = ({ onSelectRecipe }) => {
   const lunchboxesWithRecipes = (savedLunchboxes || [])
     .map(lb => ({
       ...lb,
-      principal: EXTENDED_RECIPES.find(r => r.id === lb.principalId),
-      fruta: EXTENDED_RECIPES.find(r => r.id === lb.frutaId),
-      complemento: EXTENDED_RECIPES.find(r => r.id === lb.complementoId)
+      principal: findLunchboxComponentById(lb.principalId),
+      fruta: findLunchboxComponentById(lb.frutaId),
+      complemento: findLunchboxComponentById(lb.complementoId),
+      bebida: findLunchboxComponentById(lb.bebidaId)
     }))
-    .filter(lb => lb.principal && lb.fruta && lb.complemento);
+    .filter(lb => lb.principal && lb.fruta && lb.complemento && lb.bebida);
 
   return (
     <div className="space-y-6 animate-fadeIn">
@@ -219,14 +221,14 @@ export const ProfileView = ({ onSelectRecipe }) => {
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  {[lb.principal, lb.fruta, lb.complemento].map((recipe, idx) => (
+                <div className="grid grid-cols-4 gap-2 text-center">
+                  {[lb.principal, lb.fruta, lb.complemento, lb.bebida].map((recipe, idx) => (
                     <button
                       key={idx}
                       onClick={() => onSelectRecipe && onSelectRecipe(recipe)}
                       className="flex flex-col items-center gap-1 p-2 rounded-xl bg-cream-50 dark:bg-mirtilo-800 hover:bg-cream-100 dark:hover:bg-mirtilo-600 transition-colors"
                     >
-                      <span className="text-xl">{recipe.emoji}</span>
+                      <RecipeImage recipe={recipe} className="h-10 w-10 rounded-lg" emojiClassName="text-xl" />
                       <span className="text-[10px] font-semibold text-mirtilo-700 dark:text-cream-200 line-clamp-2 leading-tight">
                         {recipe.nombre}
                       </span>

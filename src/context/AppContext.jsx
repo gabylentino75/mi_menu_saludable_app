@@ -67,6 +67,13 @@ export const AppProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : [];
   });
 
+  // Comidas personalizadas creadas por el usuario para el Planificador Semanal
+  // (no forman parte del catálogo EXTENDED_RECIPES, viven aparte).
+  const [customMeals, setCustomMeals] = useState(() => {
+    const saved = localStorage.getItem('cs_custom_meals');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   // Modals & Active Viewers
   const [isPantryModalOpen, setIsPantryModalOpen] = useState(false);
   const [isLunchboxModalOpen, setIsLunchboxModalOpen] = useState(false);
@@ -108,6 +115,10 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('cs_lunchboxes', JSON.stringify(savedLunchboxes));
   }, [savedLunchboxes]);
+
+  useEffect(() => {
+    localStorage.setItem('cs_custom_meals', JSON.stringify(customMeals));
+  }, [customMeals]);
 
   // Actions
   const toggleDarkMode = () => setDarkMode(prev => !prev);
@@ -186,7 +197,7 @@ export const AppProvider = ({ children }) => {
     addIngredientsToShoppingList(recipe.ingredientes, recipe.nombre);
   };
 
-  const addLunchboxToShoppingList = (principal, fruit, complement) => {
+  const addLunchboxToShoppingList = (principal, fruit, complement, drink) => {
     const allIngs = [];
     let titleParts = [];
 
@@ -202,19 +213,24 @@ export const AppProvider = ({ children }) => {
       allIngs.push(...complement.ingredientes);
       titleParts.push(complement.nombre);
     }
+    if (drink && drink.ingredientes) {
+      allIngs.push(...drink.ingredientes);
+      titleParts.push(drink.nombre);
+    }
 
     addIngredientsToShoppingList(allIngs, `Vianda Escolar (${titleParts.join(' + ')})`);
   };
 
-  const saveLunchbox = (principal, fruit, complement) => {
-    if (!principal || !fruit || !complement) return;
+  const saveLunchbox = (principal, fruit, complement, drink) => {
+    if (!principal || !fruit || !complement || !drink) return;
     setSavedLunchboxes(prev => [
       {
         id: `lunchbox-${Date.now()}`,
         fecha: new Date().toISOString(),
         principalId: principal.id,
         frutaId: fruit.id,
-        complementoId: complement.id
+        complementoId: complement.id,
+        bebidaId: drink.id
       },
       ...prev
     ]);
@@ -238,6 +254,10 @@ export const AppProvider = ({ children }) => {
     setShoppingList(prev => prev.filter(item => !item.comprado));
   };
 
+  const clearAllShoppingItems = () => {
+    setShoppingList([]);
+  };
+
   const addCustomShoppingItem = (name, category = 'Almacén', amount = 1, unit = 'unid') => {
     if (!name.trim()) return;
     setShoppingList(prev => [
@@ -253,6 +273,66 @@ export const AppProvider = ({ children }) => {
       }
     ]);
   };
+
+  // Comida personalizada (ej. "Asado al horno con papas") para usar en el Planificador Semanal
+  // cuando no está en el catálogo de recetas. Se guarda con forma compatible con una receta
+  // normal para poder mostrarla, abrir su detalle y sumar sus ingredientes a la lista de compras.
+  const addCustomMeal = (nombre, categoria, ingredientesArray = []) => {
+    const trimmedName = (nombre || '').trim();
+    if (!trimmedName) return null;
+
+    const meal = {
+      id: `custom-${Date.now()}`,
+      nombre: trimmedName,
+      categoria: categoria || 'Almuerzo/Cena',
+      subcategoria: 'Personalizada',
+      descripcion: 'Comida personalizada agregada por vos.',
+      porciones: null,
+      prep_min: null,
+      total_min: null,
+      dificultad: 'Personalizada',
+      frutas: [],
+      verduras: [],
+      etiquetas: ['Personalizada'],
+      preparacion_anticipada: false,
+      para_llevar: false,
+      congelable: false,
+      conservacion: 'Según tu preferencia.',
+      ingredientes: ingredientesArray.map((ing, idx) => ({
+        id: `custom-ing-${Date.now()}-${idx}`,
+        nombre: ing.nombre,
+        cantidad: ing.cantidad || 1,
+        unidad: ing.unidad || 'unid',
+        categoria: ing.categoria || 'Almacén'
+      })),
+      pasos: ['Comida personalizada: preparala a tu gusto.'],
+      sustituciones: [],
+      recetas_relacionadas: [],
+      emoji: '🍽️',
+      esPersonalizada: true
+    };
+
+    setCustomMeals(prev => [...prev, meal]);
+    return meal;
+  };
+
+  const removeCustomMeal = (mealId) => {
+    setCustomMeals(prev => prev.filter(m => m.id !== mealId));
+    // Si esta comida estaba usada en el plan semanal, la sacamos de esos días también.
+    setWeeklyPlan(prev => {
+      const updated = {};
+      Object.entries(prev).forEach(([day, meals]) => {
+        updated[day] = {
+          almuerzo: meals.almuerzo === mealId ? undefined : meals.almuerzo,
+          cena: meals.cena === mealId ? undefined : meals.cena
+        };
+      });
+      return updated;
+    });
+  };
+
+  const findWeeklyPlanMealById = (id) =>
+    EXTENDED_RECIPES.find(r => r.id === id) || customMeals.find(m => m.id === id);
 
   const setWeeklyMeal = (day, mealType, recipeId) => {
     setWeeklyPlan(prev => ({
@@ -273,7 +353,7 @@ export const AppProvider = ({ children }) => {
 
     const ingredientsToCombine = [];
     recipeIds.forEach(id => {
-      const recipe = EXTENDED_RECIPES.find(r => r.id === id);
+      const recipe = findWeeklyPlanMealById(id);
       if (recipe && recipe.ingredientes) {
         ingredientsToCombine.push(...recipe.ingredientes);
       }
@@ -305,10 +385,15 @@ export const AppProvider = ({ children }) => {
       toggleShoppingItem,
       removeShoppingItem,
       clearCompletedShoppingItems,
+      clearAllShoppingItems,
       addCustomShoppingItem,
       weeklyPlan,
       setWeeklyMeal,
       generateShoppingFromWeeklyPlan,
+      customMeals,
+      addCustomMeal,
+      removeCustomMeal,
+      findWeeklyPlanMealById,
       isPantryModalOpen,
       setIsPantryModalOpen,
       isLunchboxModalOpen,

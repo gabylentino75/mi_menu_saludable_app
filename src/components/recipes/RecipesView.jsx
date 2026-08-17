@@ -1,9 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import { Search, X, ChevronRight, Carrot } from 'lucide-react';
+import { Search, X, ChevronRight, Carrot, Sparkles, Check } from 'lucide-react';
 import { EXTENDED_RECIPES } from '../../data/recipesData';
 import { RecipeCard } from './RecipeCard';
 import { useApp } from '../../context/AppContext';
 import { normalize } from '../../utils/text.js';
+import { CustomMealModal } from '../planner/CustomMealModal';
 
 const CATEGORY_CARDS = [
   { id: 'Desayuno/Merienda', label: 'Desayunos y meriendas', image: `${import.meta.env.BASE_URL}images/categories/desayuno.jpg`, bg: 'bg-peach-300' },
@@ -12,11 +13,13 @@ const CATEGORY_CARDS = [
 ];
 
 export const RecipesView = ({ onSelectRecipe }) => {
-  const { setIsLunchboxModalOpen, setIsPantryModalOpen } = useApp();
+  const { setIsLunchboxModalOpen, setIsPantryModalOpen, setActiveTab } = useApp();
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Todas');
   const [selectedTime, setSelectedTime] = useState(null); // 10, 15, 20, 30, 31 (for +30)
   const [selectedTags, setSelectedTags] = useState([]);
+  const [showCustomMealModal, setShowCustomMealModal] = useState(false);
+  const [customMealSavedToast, setCustomMealSavedToast] = useState(false);
 
   const timeOptions = [
     { label: '10 min', value: 10 },
@@ -73,6 +76,12 @@ export const RecipesView = ({ onSelectRecipe }) => {
     setSelectedCategory('Todas');
     setSelectedTime(null);
     setSelectedTags([]);
+  };
+
+  const handleCustomMealSaved = () => {
+    setShowCustomMealModal(false);
+    setCustomMealSavedToast(true);
+    setTimeout(() => setCustomMealSavedToast(false), 4000);
   };
 
   return (
@@ -176,7 +185,28 @@ export const RecipesView = ({ onSelectRecipe }) => {
           <Carrot className="w-4 h-4" />
           Tengo estos ingredientes
         </button>
+        <button
+          onClick={() => setShowCustomMealModal(true)}
+          className="w-full flex items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-coral-300 text-coral-600 dark:text-coral-400 dark:border-coral-500/50 font-bold text-sm py-3 hover:bg-coral-50 dark:hover:bg-coral-500/10 transition-all"
+        >
+          <Sparkles className="w-4 h-4" />
+          Crear comida personalizada
+        </button>
       </div>
+
+      {customMealSavedToast && (
+        <div className="p-3 bg-mint-500 text-white font-bold text-xs rounded-2xl flex items-center justify-between gap-2 animate-fadeIn shadow-soft">
+          <span className="flex items-center gap-2">
+            <Check className="w-4 h-4" /> ¡Comida personalizada guardada!
+          </span>
+          <button
+            onClick={() => setActiveTab('planner')}
+            className="underline shrink-0"
+          >
+            Ir al Planificador
+          </button>
+        </div>
+      )}
 
       {/* Dietary Tags */}
       <div className="flex flex-wrap gap-1.5">
@@ -226,6 +256,12 @@ export const RecipesView = ({ onSelectRecipe }) => {
           </button>
         </div>
       )}
+
+      <CustomMealModal
+        isOpen={showCustomMealModal}
+        onClose={() => setShowCustomMealModal(false)}
+        onSave={handleCustomMealSaved}
+      />
 
     </div>
   );

@@ -1,32 +1,28 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { ShoppingBag, Plus, Trash2, CheckCircle2, Circle, Sparkles, Check } from 'lucide-react';
-
-const CATEGORIES = [
-  'Verduras',
-  'Frutas',
-  'Lácteos y Bebidas',
-  'Almacén',
-  'Panadería',
-  'Carnes y Pescados',
-  'Refrigerados',
-  'Especias',
-  'Otros'
-];
+import { SHOPPING_CATEGORIES as CATEGORIES } from '../../utils/shoppingCategories';
 
 export const ShoppingListView = () => {
-  const { 
-    shoppingList, 
-    toggleShoppingItem, 
-    removeShoppingItem, 
+  const {
+    shoppingList,
+    toggleShoppingItem,
+    removeShoppingItem,
     clearCompletedShoppingItems,
-    addCustomShoppingItem 
+    clearAllShoppingItems,
+    addCustomShoppingItem
   } = useApp();
 
   const [newItemName, setNewItemName] = useState('');
   const [newItemCategory, setNewItemCategory] = useState('Almacén');
   const [newItemQty, setNewItemQty] = useState(1);
   const [newItemUnit, setNewItemUnit] = useState('unid');
+  const [confirmingClearAll, setConfirmingClearAll] = useState(false);
+
+  const handleClearAll = () => {
+    clearAllShoppingItems();
+    setConfirmingClearAll(false);
+  };
 
   const handleAddCustom = (e) => {
     e.preventDefault();
@@ -63,15 +59,48 @@ export const ShoppingListView = () => {
           </p>
         </div>
 
-        {completedItems.length > 0 && (
-          <button
-            onClick={clearCompletedShoppingItems}
-            className="text-xs font-bold text-coral-600 hover:text-coral-700 bg-coral-100 dark:bg-coral-500/20 px-3 py-1.5 rounded-xl transition-all flex items-center gap-1"
-          >
-            <Trash2 className="w-3.5 h-3.5" /> Limpiar comprados
-          </button>
-        )}
+        <div className="flex items-center gap-2 shrink-0">
+          {completedItems.length > 0 && (
+            <button
+              onClick={clearCompletedShoppingItems}
+              className="text-xs font-bold text-coral-600 hover:text-coral-700 bg-coral-100 dark:bg-coral-500/20 px-3 py-1.5 rounded-xl transition-all flex items-center gap-1"
+            >
+              <Trash2 className="w-3.5 h-3.5" /> Limpiar comprados
+            </button>
+          )}
+          {shoppingList.length > 0 && (
+            <button
+              onClick={() => setConfirmingClearAll(true)}
+              className="text-xs font-bold text-mirtilo-500 dark:text-cream-300 hover:text-coral-600 bg-cream-100 dark:bg-mirtilo-700 px-3 py-1.5 rounded-xl transition-all flex items-center gap-1"
+            >
+              <Trash2 className="w-3.5 h-3.5" /> Borrar toda la lista
+            </button>
+          )}
+        </div>
       </div>
+
+      {/* Confirmación para borrar toda la lista */}
+      {confirmingClearAll && (
+        <div className="p-4 rounded-2xl bg-coral-100 dark:bg-coral-500/20 border border-coral-300 dark:border-coral-500/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fadeIn">
+          <p className="text-xs font-bold text-coral-700 dark:text-coral-200">
+            ¿Seguro que querés borrar toda la lista? Esta acción no se puede deshacer.
+          </p>
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              onClick={() => setConfirmingClearAll(false)}
+              className="px-3.5 py-1.5 rounded-xl bg-white dark:bg-mirtilo-700 text-mirtilo-600 dark:text-cream-200 text-xs font-bold border border-cream-300 dark:border-mirtilo-600"
+            >
+              Cancelar
+            </button>
+            <button
+              onClick={handleClearAll}
+              className="px-3.5 py-1.5 rounded-xl bg-coral-500 text-white text-xs font-bold shadow-soft hover:bg-coral-600"
+            >
+              Sí, borrar todo
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Manual Item Add Form */}
       <form onSubmit={handleAddCustom} className="p-4 rounded-2xl bg-white dark:bg-mirtilo-700 border border-cream-200 dark:border-mirtilo-600 shadow-sm space-y-3">

@@ -26,6 +26,8 @@ const FOOD_KEYWORDS_ES_EN = {
   bowl: 'food bowl', milanesa: 'schnitzel', carne: 'beef steak', verduras: 'vegetables',
   palta: 'avocado toast', empanadas: 'empanadas', croquetas: 'croquettes',
   sandwich: 'sandwich', budin: 'cake', galletitas: 'cookies', chia: 'chia pudding',
+  uvas: 'grapes', mandarina: 'mandarin orange', naranja: 'orange fruit', pera: 'pear fruit',
+  jugo: 'juice bottle', agua: 'water bottle',
 };
 
 function stripAccents(str) {

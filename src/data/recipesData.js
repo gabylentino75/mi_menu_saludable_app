@@ -4092,6 +4092,225 @@ export const EXTENDED_RECIPES = [
   },
 ];
 
+// ==========================================
+// COMPONENTES DEL CONSTRUCTOR DE VIANDAS
+// (fruta fresca y bebida: no son "recetas" sino items sueltos,
+// por eso viven aparte del catálogo principal y no aparecen en
+// el buscador general ni en "Para hoy").
+// ==========================================
+export const LUNCHBOX_FRUITS = [
+  {
+    id: "BANANA",
+    nombre: "Banana",
+    categoria: "Viandas",
+    subcategoria: "Fruta Vianda",
+    descripcion: "Una banana fresca, lista para llevar tal cual.",
+    porciones: 1,
+    prep_min: 0,
+    total_min: 1,
+    dificultad: "Muy fácil",
+    frutas: ["banana"],
+    verduras: [],
+    etiquetas: ["Con frutas", "Sin cocción", "Rápida"],
+    preparacion_anticipada: false,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Se conserva a temperatura ambiente 2-3 días.",
+    ingredientes: [
+      { id: "fr01-1", nombre: "Banana", cantidad: 1, unidad: "unid", categoria: "Frutas" }
+    ],
+    pasos: ["Lavar y llevar entera a la vianda."],
+    sustituciones: [],
+    recetas_relacionadas: [],
+    emoji: "🍌"
+  },
+  {
+    id: "MANZANA",
+    nombre: "Manzana",
+    categoria: "Viandas",
+    subcategoria: "Fruta Vianda",
+    descripcion: "Una manzana fresca, lista para llevar tal cual.",
+    porciones: 1,
+    prep_min: 0,
+    total_min: 1,
+    dificultad: "Muy fácil",
+    frutas: ["manzana"],
+    verduras: [],
+    etiquetas: ["Con frutas", "Sin cocción", "Rápida"],
+    preparacion_anticipada: false,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Se conserva en heladera hasta 2 semanas.",
+    ingredientes: [
+      { id: "fr02-1", nombre: "Manzana", cantidad: 1, unidad: "unid", categoria: "Frutas" }
+    ],
+    pasos: ["Lavar y llevar entera a la vianda."],
+    sustituciones: [],
+    recetas_relacionadas: [],
+    emoji: "🍎"
+  },
+  {
+    id: "UVA",
+    nombre: "Uvas",
+    categoria: "Viandas",
+    subcategoria: "Fruta Vianda",
+    descripcion: "Un racimo de uvas frescas, lavadas y listas para llevar.",
+    porciones: 1,
+    prep_min: 0,
+    total_min: 1,
+    dificultad: "Muy fácil",
+    frutas: ["uvas"],
+    verduras: [],
+    etiquetas: ["Con frutas", "Sin cocción", "Rápida"],
+    preparacion_anticipada: false,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Se conserva en heladera 5-7 días.",
+    ingredientes: [
+      { id: "fr03-1", nombre: "Uvas", cantidad: 100, unidad: "g", categoria: "Frutas" }
+    ],
+    pasos: ["Lavar bien el racimo y llevar en un potecito."],
+    sustituciones: [],
+    recetas_relacionadas: [],
+    emoji: "🍇"
+  },
+  {
+    id: "MANDARINA",
+    nombre: "Mandarina",
+    categoria: "Viandas",
+    subcategoria: "Fruta Vianda",
+    descripcion: "Una mandarina fresca, fácil de pelar y llevar.",
+    porciones: 1,
+    prep_min: 0,
+    total_min: 1,
+    dificultad: "Muy fácil",
+    frutas: ["mandarina"],
+    verduras: [],
+    etiquetas: ["Con frutas", "Sin cocción", "Rápida"],
+    preparacion_anticipada: false,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Se conserva a temperatura ambiente 4-5 días.",
+    ingredientes: [
+      { id: "fr04-1", nombre: "Mandarina", cantidad: 1, unidad: "unid", categoria: "Frutas" }
+    ],
+    pasos: ["Lavar y llevar entera a la vianda."],
+    sustituciones: [],
+    recetas_relacionadas: [],
+    emoji: "🍊"
+  },
+  {
+    id: "NARANJA",
+    nombre: "Naranja",
+    categoria: "Viandas",
+    subcategoria: "Fruta Vianda",
+    descripcion: "Una naranja fresca, lista para llevar tal cual.",
+    porciones: 1,
+    prep_min: 0,
+    total_min: 1,
+    dificultad: "Muy fácil",
+    frutas: ["naranja"],
+    verduras: [],
+    etiquetas: ["Con frutas", "Sin cocción", "Rápida"],
+    preparacion_anticipada: false,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Se conserva a temperatura ambiente 1 semana.",
+    ingredientes: [
+      { id: "fr05-1", nombre: "Naranja", cantidad: 1, unidad: "unid", categoria: "Frutas" }
+    ],
+    pasos: ["Lavar y llevar entera a la vianda."],
+    sustituciones: [],
+    recetas_relacionadas: [],
+    emoji: "🍊"
+  },
+  {
+    id: "PERA",
+    nombre: "Pera",
+    categoria: "Viandas",
+    subcategoria: "Fruta Vianda",
+    descripcion: "Una pera fresca, lista para llevar tal cual.",
+    porciones: 1,
+    prep_min: 0,
+    total_min: 1,
+    dificultad: "Muy fácil",
+    frutas: ["pera"],
+    verduras: [],
+    etiquetas: ["Con frutas", "Sin cocción", "Rápida"],
+    preparacion_anticipada: false,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Se conserva en heladera hasta 1 semana.",
+    ingredientes: [
+      { id: "fr06-1", nombre: "Pera", cantidad: 1, unidad: "unid", categoria: "Frutas" }
+    ],
+    pasos: ["Lavar y llevar entera a la vianda."],
+    sustituciones: [],
+    recetas_relacionadas: [],
+    emoji: "🍐"
+  }
+];
+
+export const LUNCHBOX_DRINKS = [
+  {
+    id: "BAM",
+    nombre: "Agua mineral",
+    categoria: "Viandas",
+    subcategoria: "Bebida Vianda",
+    descripcion: "Botella de agua mineral individual.",
+    porciones: 1,
+    prep_min: 0,
+    total_min: 1,
+    dificultad: "Muy fácil",
+    frutas: [],
+    verduras: [],
+    etiquetas: ["Sin cocción", "Rápida"],
+    preparacion_anticipada: false,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Se conserva a temperatura ambiente.",
+    ingredientes: [
+      { id: "be01-1", nombre: "Agua mineral", cantidad: 1, unidad: "botella", categoria: "Bebidas" }
+    ],
+    pasos: ["Llevar la botella tal cual a la vianda."],
+    sustituciones: [],
+    recetas_relacionadas: [],
+    emoji: "💧"
+  },
+  {
+    id: "BJN",
+    nombre: "Jugo",
+    categoria: "Viandas",
+    subcategoria: "Bebida Vianda",
+    descripcion: "Botella o sachet individual de jugo.",
+    porciones: 1,
+    prep_min: 0,
+    total_min: 1,
+    dificultad: "Muy fácil",
+    frutas: [],
+    verduras: [],
+    etiquetas: ["Sin cocción", "Rápida"],
+    preparacion_anticipada: false,
+    para_llevar: true,
+    congelable: false,
+    conservacion: "Se conserva a temperatura ambiente hasta abrir.",
+    ingredientes: [
+      { id: "be02-1", nombre: "Jugo", cantidad: 1, unidad: "botella", categoria: "Bebidas" }
+    ],
+    pasos: ["Llevar la botella tal cual a la vianda."],
+    sustituciones: [],
+    recetas_relacionadas: [],
+    emoji: "🧃"
+  }
+];
+
+// Pool combinado, sólo para resolver ids guardados de viandas armadas
+// (el catálogo principal EXTENDED_RECIPES no incluye frutas/bebidas sueltas).
+export const LUNCHBOX_EXTRAS = [...LUNCHBOX_FRUITS, ...LUNCHBOX_DRINKS];
+
+export const findLunchboxComponentById = (id) =>
+  EXTENDED_RECIPES.find(r => r.id === id) || LUNCHBOX_EXTRAS.find(r => r.id === id);
+
 // Helper para obtener todas las recetas
 export const getAllRecipes = () => EXTENDED_RECIPES;
 

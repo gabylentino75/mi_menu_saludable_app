@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { Menu, Bell, Moon, Sun, Carrot } from 'lucide-react';
+import { Menu, Moon, Sun, Carrot } from 'lucide-react';
 
 export const Header = () => {
   const { darkMode, toggleDarkMode, setIsPantryModalOpen, setIsMenuOpen } = useApp();
@@ -31,12 +31,6 @@ export const Header = () => {
             title="Cambiar tema"
           >
             {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </button>
-          <button
-            className="p-2 rounded-xl text-mirtilo-700 dark:text-cream-100 hover:bg-cream-200 dark:hover:bg-mirtilo-700 transition-colors"
-            aria-label="Notificaciones"
-          >
-            <Bell className="w-5 h-5" />
           </button>
         </div>
       </div>

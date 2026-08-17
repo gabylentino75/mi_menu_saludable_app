@@ -74,15 +74,21 @@ export const RecipeDetailModal = ({ recipe, onClose, onSelectRelated }) => {
 
           {/* Quick Metrics Bar */}
           <div className="flex items-center gap-4 mt-3 text-sm text-mirtilo-600 dark:text-cream-300">
-            <span className="flex items-center gap-1 font-bold text-coral-600 dark:text-coral-400">
-              <Clock className="w-4 h-4" /> {recipe.total_min} min
-            </span>
-            <span className="flex items-center gap-1">
-              <Users className="w-4 h-4" /> {recipe.porciones} porciones
-            </span>
-            <span className="flex items-center gap-1">
-              <Flame className="w-4 h-4" /> {recipe.dificultad}
-            </span>
+            {typeof recipe.total_min === 'number' && (
+              <span className="flex items-center gap-1 font-bold text-coral-600 dark:text-coral-400">
+                <Clock className="w-4 h-4" /> {recipe.total_min} min
+              </span>
+            )}
+            {typeof recipe.porciones === 'number' && (
+              <span className="flex items-center gap-1">
+                <Users className="w-4 h-4" /> {recipe.porciones} porciones
+              </span>
+            )}
+            {recipe.dificultad && (
+              <span className="flex items-center gap-1">
+                <Flame className="w-4 h-4" /> {recipe.dificultad}
+              </span>
+            )}
           </div>
         </div>
 
